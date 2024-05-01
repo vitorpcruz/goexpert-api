@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/vitorpcruz/goexper/9-APIS/configs"
+	"github.com/vitorpcruz/goexpert/9-APIS/configs"
 )
 
 func main() {
