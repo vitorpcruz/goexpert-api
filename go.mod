@@ -3,6 +3,7 @@ module github.com/vitorpcruz/goexpert/9-APIS
 go 1.22.2
 
 require (
+	github.com/go-chi/chi/v5 v5.0.12
 	github.com/go-chi/jwtauth v1.2.0
 	github.com/spf13/viper v1.18.2
 	github.com/stretchr/testify v1.8.4
