@@ -1,3 +1,5 @@
+@url = "http://localhost:8080/products"
+
 ###
 POST http://localhost:8080/products
 Content-Type: application/json
@@ -6,3 +8,16 @@ Content-Type: application/json
     "name": "My Product",
     "price": 100.00
 }
+
+###
+GET http://localhost:8080/products/53efceb9-9e5a-4afb-9f0a-78455c5e2cbb
+
+###
+PUT http://localhost:8080/products/53efceb9-9e5a-4afb-9f0a-78455c5e2cbb
+Content-Type: application/json
+
+{
+    "name": "My Product (Updated)",
+    "price": 100.00
+}
+
