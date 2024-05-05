@@ -13,6 +13,9 @@ Content-Type: application/json
 GET http://localhost:8080/products/53efceb9-9e5a-4afb-9f0a-78455c5e2cbb
 
 ###
+GET http://localhost:8080/products
+
+###
 PUT http://localhost:8080/products/53efceb9-9e5a-4afb-9f0a-78455c5e2cbb
 Content-Type: application/json
 
@@ -20,4 +23,8 @@ Content-Type: application/json
     "name": "My Product (Updated)",
     "price": 100.00
 }
+
+###
+DELETE http://localhost:8080/products/53efceb9-9e5a-4afb-9f0a-78455c5e2cbb
+Content-Type: application/json
 

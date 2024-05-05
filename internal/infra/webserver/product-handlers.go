@@ -3,6 +3,7 @@ package handlers
 import (
 	"encoding/json"
 	"net/http"
+	"strconv"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/vitorpcruz/goexpert/9-APIS/internal/dto"
@@ -93,4 +94,50 @@ func (h *ProductHandler) UpdateProduct(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.WriteHeader(http.StatusOK)
+}
+
+func (h *ProductHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
+	id := chi.URLParam(r, "id")
+	if id == "" {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	_, err := h.ProductRepository.FindByID(id)
+	if err != nil {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+	err = h.ProductRepository.Delete(id)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	w.WriteHeader(http.StatusOK)
+}
+
+func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
+	pageParam := r.URL.Query().Get("page")
+
+	pageNumber, err := strconv.Atoi(pageParam)
+	if err != nil {
+		pageNumber = 0
+	}
+
+	limitParam := r.URL.Query().Get("limit")
+	limitNumber, err := strconv.Atoi(limitParam)
+	if err != nil {
+		limitNumber = 0
+	}
+
+	sort := r.URL.Query().Get("sort")
+
+	products, err := h.ProductRepository.FindAll(pageNumber, limitNumber, sort)
+	if err != nil {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+	json.NewEncoder(w).Encode(products)
 }
