@@ -115,7 +115,7 @@ func (h *ProductHandler) DeleteProduct(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusOK)
 }
 
-func (h *ProductHandler) GetProducts(w http.ResponseWriter, r *http.Request) {
+func (h *ProductHandler) GetAll(w http.ResponseWriter, r *http.Request) {
 	pageParam := r.URL.Query().Get("page")
 
 	pageNumber, err := strconv.Atoi(pageParam)
