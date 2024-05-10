@@ -36,6 +36,11 @@ func main() {
 	productRepo := database.NewProductRepo(db)
 	productHandler := handlers.NewProductHandler(productRepo)
 
+  userRepo := database.NewUserRepository(db)
+  userHander := handlers.NewUserHandler(userRepo)
+
+	// product
+
 	log.Println("Running at 8080.")
 
 	r := chi.NewRouter()
@@ -45,6 +50,8 @@ func main() {
 	r.Get("/products", productHandler.GetAll)
 	r.Put("/products/{id}", productHandler.UpdateProduct)
 	r.Delete("/products/{id}", productHandler.DeleteProduct)
+
+	r.Post("/users", userHander.CreateUser);
 
 	http.ListenAndServe(":8080", r)
 }
