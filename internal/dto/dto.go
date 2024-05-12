@@ -10,3 +10,12 @@ type CreateUserInput struct {
 	Email    string `json:"email"`
 	Password string `json:"password"`
 }
+
+type GetJwtInput struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type TokenOutput struct {
+	AccessToken string `json:"acess_token"`
+}
