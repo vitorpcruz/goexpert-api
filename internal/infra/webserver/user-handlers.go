@@ -16,12 +16,8 @@ type UserHandler struct {
 	UserRepositoryInterface database.UserRepositoryInterface
 }
 
-func NewUserHandler(
-	userRepo database.UserRepositoryInterface,
-) *UserHandler {
-	return &UserHandler{
-		UserRepositoryInterface: userRepo,
-	}
+func NewUserHandler(userRepo database.UserRepositoryInterface) *UserHandler {
+	return &UserHandler{UserRepositoryInterface: userRepo}
 }
 
 func (h *UserHandler) CreateUser(w http.ResponseWriter, r *http.Request) {
